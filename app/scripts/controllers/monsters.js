@@ -8,7 +8,7 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-	.controller('MainCtrl', function ($scope,$http,$sce) {
+	.controller('MonstersCtrl', function ($scope,$http,$sce) {
 		function toMod(input){
 			var val = Math.floor((input - 10) / 2);
 			return (val > 0 ? '+' : '') + val;
@@ -24,6 +24,7 @@ angular.module('dragonApp')
 					data[i].intMod = toMod(data[i].int);
 					data[i].wisMod = toMod(data[i].wis);
 					data[i].chaMod = toMod(data[i].cha);
+					data[i].collapsed = true;
 				}
 			
 			$scope.monsters = data;

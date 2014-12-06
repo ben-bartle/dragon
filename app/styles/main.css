@@ -77,3 +77,19 @@ body {
     border-bottom: 0;
   }
 }
+
+
+/*ME*/
+
+.panel-title em {
+  float:right;
+}
+
+.panel-monster table {
+  width:50%;
+  float:right;
+}
+
+.btn-prepare {
+  float:right;
+}
