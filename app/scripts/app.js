@@ -15,7 +15,9 @@ angular
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'hc.marked',
+    'LocalStorageModule'
   ])
   .config(function ($routeProvider) {
     $routeProvider

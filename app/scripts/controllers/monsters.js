@@ -16,8 +16,8 @@ angular.module('dragonApp')
 
 		$http.get('/data/monsters.json').success(function(data) {
 				for (var i=0;i<data.length;i++) {
-					data[i].features = marked.parse(data[i].features);
-					data[i].actions = marked.parse(data[i].actions);
+					//data[i].features = marked.parse(data[i].features);
+					//data[i].actions = marked.parse(data[i].actions);
 					data[i].strMod = toMod(data[i].str);
 					data[i].dexMod = toMod(data[i].dex);
 					data[i].conMod = toMod(data[i].con);

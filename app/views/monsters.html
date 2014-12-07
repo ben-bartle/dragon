@@ -29,6 +29,9 @@
       <strong>Languages</strong>: {{monster.languages}}<br/>
       <strong>Challenge</strong>: {{monster.challenge}}<br/>
     </div>
-    <div ng-bind-html="trustAsHtml(monster.features)"></div>
+
+    <div marked="monster.features"></div>
+    <div marked="monster.actions"></div>
+
   </div>
 </article>
