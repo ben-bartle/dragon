@@ -17,16 +17,14 @@ angular.module('dragonApp')
 		$scope.spells = localStorageService.get('spells');
 		$scope.casterFilters = localStorageService.get('casterFilters');
 		$scope.prepared = localStorageService.get('prepared') || {};
+
 		if (!$scope.spells) {
 			$http.get('data/spells.json').success(function(data) {
 				var tmpCasterFilters = {};
 				//process each spells data before assigning it
 				for (var i=0;i<data.length;i++) {
-					//parse the description from markdown to 
-					//data[i].description = marked.parse(data[i].description);
 					data[i].collapsed = true;
 					data[i].order = data[i].level + '_' + data[i].name;
-					data[i].prepared = false;
 					for (var c in data[i].casters) {
 						tmpCasterFilters[data[i].casters[c]] = true;
 					}
@@ -41,7 +39,8 @@ angular.module('dragonApp')
 		$scope.toggleShowPrepared = function(){
 			$scope.onlyPrepared = !$scope.onlyPrepared;
 			localStorageService.set('onlyPrepared',$scope.onlyPrepared);
-		}
+		};
+
 		$scope.toggleLevelFilter = function(i) {
 			$scope.levelFilters[i] = !$scope.levelFilters[i];
 			localStorageService.set('levelfilters',$scope.levelFilters);
