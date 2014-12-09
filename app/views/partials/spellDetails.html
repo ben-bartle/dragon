@@ -1,0 +1,19 @@
+<div class="well well-sm">
+    <div class="btn-group btn-group-icons">
+        <button class="btn"
+                ng-repeat="(icon,val) in iconFilters"
+                ng-click="toggleIconFilter(spell,icon)"
+                ng-class="spellIcons[spell.name][icon] ? 'btn-primary' : 'btn-default'">
+            <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
+        </button>
+    </div>
+
+    <strong>Casting Time</strong>: {{spell.castingTime}}<br/>
+    <strong>Range</strong>: {{spell.range}} <br/>
+    <strong>Components</strong>: {{spell.components}} <br/>
+    <strong>Duration</strong>: {{spell.duration}} <br/>
+    
+</div>
+
+
+<div marked="spell.description"></div>
