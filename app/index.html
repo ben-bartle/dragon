@@ -22,19 +22,11 @@
 
     <!-- Add your site or application content here -->
     <div class="container-fluid">
-      <div class="header">
-        <ul class="nav nav-pills pull-right">
-          <li ng-class="$scope.tab == 'home' ? 'active':''"><a ng-href="#">Home</a></li>
-          <li ng-class="$scope.tab == 'spells' ? 'active':''"><a ng-href="#/spells">Spells</a></li>
-          <li ng-class="$scope.tab == 'monster' ? 'active':''"><a ng-href="#/monsters">Monsters</a></li>
-        </ul>
-        <h3 class="text-muted">dragon</h3>
-      </div>
 
-      <div ng-view=""></div>
+      <ng-view></ng-view>
 
       <div class="footer">
-        <!--<p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
+       <!-- <p><span class="glyphicon glyphicon-heart"></span> from the Yeoman team</p>-->
       </div>
     </div>
 
@@ -62,6 +54,7 @@
     <script src="bower_components/marked/lib/marked.js"></script>
     <script src="bower_components/angular-marked/angular-marked.js"></script>
     <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="bower_components/angular-bootstrap/ui-bootstrap.js"></script>
 
     <!-- endbuild -->
 

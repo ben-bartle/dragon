@@ -8,16 +8,27 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-	.controller('MonstersCtrl', function ($scope,$http,$sce) {
+	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService) {
+  		$scope.tab="monsters";
+		$scope.monsters = localStorageService.get('monsters') 
+			|| [];
+		
+		$scope.crFilters = localStorageService.get('crFilters') 
+			|| {"0":true,"1/8":true,"1/4":true,"1/2":true,"1":true,"2":true,"3":true,"4":true,"5":true};
+
+		$scope.setCRFilter = function(cr){
+			$scope.crFilters[cr] = !$scope.crFilters[cr];
+			localStorageService.set('crFilters',$scope.crFilters) 
+		}
+
 		function toMod(input){
 			var val = Math.floor((input - 10) / 2);
 			return (val > 0 ? '+' : '') + val;
 		}
 
-		$http.get('/data/monsters.json').success(function(data) {
+		$scope.loadMonsters = function(){
+			$http.get('/data/monsters.json').success(function(data) {
 				for (var i=0;i<data.length;i++) {
-					//data[i].features = marked.parse(data[i].features);
-					//data[i].actions = marked.parse(data[i].actions);
 					data[i].strMod = toMod(data[i].str);
 					data[i].dexMod = toMod(data[i].dex);
 					data[i].conMod = toMod(data[i].con);
@@ -26,12 +37,12 @@ angular.module('dragonApp')
 					data[i].chaMod = toMod(data[i].cha);
 					data[i].collapsed = true;
 				}
-			
-			$scope.monsters = data;
-		});
+				$scope.monsters = data;
+				localStorageService.set('monsters',data);
+			});
+		}
 
-		$scope.trustAsHtml = function(input) {
-			return $sce.trustAsHtml(input);
-		};
+		
+	
 
 	});

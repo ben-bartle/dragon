@@ -9,6 +9,5 @@
  */
 angular.module('dragonApp')
 	.controller('MainCtrl', function ($scope) {
-		$scope.tab='home';
-		
+		$scope.tab='home';		
 	});

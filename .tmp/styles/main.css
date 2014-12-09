@@ -85,11 +85,15 @@ body {
   float:right;
 }
 
+.panel-title span {
+  margin-left:5px;
+}
+
 .panel-monster table {
   width:50%;
   float:right;
 }
 
-.btn-prepare {
+.btn-group-icons {
   float:right;
 }

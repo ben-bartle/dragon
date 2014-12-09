@@ -17,7 +17,8 @@ angular
     'ngSanitize',
     'ngTouch',
     'hc.marked',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ui.bootstrap'
   ])
   .config(function ($routeProvider) {
     $routeProvider

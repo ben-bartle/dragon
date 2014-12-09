@@ -1,37 +1,54 @@
-<article class="panel panel-info" ng-repeat="monster in monsters">
-  <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
-    <h2 class="panel-title">
-      {{monster.name}}
-      <em>{{monster.type}}</em>
-    </h2>
-  </header>
-  <div class="panel-monster panel-body" ng-show="!monster.collapsed">
-    <div class="well well-sm">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>{{monster.str}}</td><td>{{monster.dex}}</td><td>{{monster.con}}</td><td>{{monster
-            .int}}</td><td>{{monster.wis}}</td><td>{{monster.cha}}</td>
-          <tr></tr>
-            <td>({{monster.strMod}})</td><td>({{monster.dexMod}})</td><td>({{monster.conMod}})</td><td>({{monster.intMod}})</td><td>({{monster.wisMod}})</td><td>({{monster.chaMod}})</td>
-          </tr>
-        </tbody>
-      </table>
-      <strong>Armor Class</strong>: {{monster.armorClass}}<br/>
-      <strong>Hit Points</strong>: {{monster.hitPoints}}<br/>
-      <strong>Skills</strong>: {{monster.skills}}<br/>
-      <strong>Senses</strong>: {{monster.senses}}<br/>
-      <strong>Languages</strong>: {{monster.languages}}<br/>
-      <strong>Challenge</strong>: {{monster.challenge}}<br/>
-    </div>
+<div ng-include="'/views/partials/nav.html'" ></div>
+<div ng-show="monsters.length ==0">
+    <a ng-click="loadMonsters()"
+        class="btn btn-lg">Load Monster Data
+    </a>
+</div>
+<div ng-hide="monsters.length==0">
+    <!-- CR buttons -->
+   <div class="btn-group">
+      <button ng-repeat="(cr,show) in crFilters" 
+        ng-click="setCRFilter(cr)"
+        class="btn"
+        ng-class="show ? 'btn-primary':'btn-default'">{{cr}}</button>
+    </div><br/><br/>
+    
 
-    <div marked="monster.features"></div>
-    <div marked="monster.actions"></div>
+    <article class="panel panel-info" ng-repeat="monster in monsters">
+        <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
+            <h2 class="panel-title">
+                {{monster.name}}
+                <em>{{monster.type}}</em>
+            </h2>
+        </header>
+        <div class="panel-monster panel-body" ng-show="!monster.collapsed">
+            <div class="well well-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{monster.str}}</td><td>{{monster.dex}}</td><td>{{monster.con}}</td><td>{{monster
+                            .int}}</td><td>{{monster.wis}}</td><td>{{monster.cha}}</td>
+                        <tr></tr>
+                            <td>({{monster.strMod}})</td><td>({{monster.dexMod}})</td><td>({{monster.conMod}})</td><td>({{monster.intMod}})</td><td>({{monster.wisMod}})</td><td>({{monster.chaMod}})</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <strong>Armor Class</strong>: {{monster.armorClass}}<br/>
+                <strong>Hit Points</strong>: {{monster.hitPoints}}<br/>
+                <strong>Skills</strong>: {{monster.skills}}<br/>
+                <strong>Senses</strong>: {{monster.senses}}<br/>
+                <strong>Languages</strong>: {{monster.languages}}<br/>
+                <strong>Challenge</strong>: {{monster.challenge}}<br/>
+            </div>
 
-  </div>
-</article>
+            <div marked="monster.features"></div>
+            <div marked="monster.actions"></div>
+
+        </div>
+    </article>
+</div>

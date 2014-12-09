@@ -1,70 +1,94 @@
-<br/>
-<div class="form-group">
-	<!-- Class buttons -->
-	<div class="btn-group">
-		<button ng-repeat="(caster,show) in casterFilters" 
-			ng-click="setCasterFilter(caster)"
-			class="btn"
-			ng-class="show ? 'btn-primary':'btn-default'">{{caster}}</button>
-	</div><br/><br/>
-	
+<div ng-include="'/views/partials/nav.html'" ></div>
 
-	<!-- Level buttons -->
-	<div class="btn-group">
-		<button ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7,8,9]"
-			ng-click="toggleLevelFilter(i)"
-			class="btn"
-			ng-class="levelFilters[i] ? 'btn-primary' : 'btn-default'">{{i == 0 ? 'Cantrip' : i}}</button>
-		
-	</div>
-	&nbsp;&nbsp;&nbsp;
-	<button class="btn"
-			ng-click="toggleShowPrepared()"
-			ng-class="onlyPrepared ? 'btn-primary' : 'btn-default'">Only Prepared</button>
-
-			<br/><br/>
-
-	<!--name box -->
-	<div class="input-group">
-	  	<span class="input-group-addon">Name</span>
-  		<input class="form-control" ng-model="nameQuery"/>
-  		<span class="input-group-addon clickable"  ng-show="nameQuery.length>0"
-				ng-click="nameQuery = ''">
-  			<span class="glyphicon glyphicon-remove"></span>
-  		</span>
-	</div><br/>
-	
-	<div class="panel panel-default">
-	  <div class="panel-body">
-	    <strong>Results:</strong> {{filteredSpells.length}}
-	  </div>
-	</div>
-	
+<div ng-show="spells.length ==0">
+	<a ng-click="loadSpells()"
+		class="btn btn-lg">Load Spell Data</a>
 </div>
 
-<article class="panel"
- ng-class="'panel-' + levelCssClass(spell.level)"
- ng-repeat="spell in filteredSpells = (getSpellsByCaster() | filter:{name:nameQuery, description:descriptionQuery}  | orderBy:'order' )">
-	<header class="panel-heading"
-		ng-model="spell.collapsed" 
-		ng-click="spell.collapsed=!spell.collapsed">
-		<h3 class="panel-title">
-			{{spell.name}} <span ng-show="prepared[spell.name]" class="glyphicon glyphicon-ok"></span>
-			<em class="spell-level-title spell-level-{{spell.level}}">{{spell.type}}</em>
-		</h3>
-	</header>
-	<div class="panel-body" ng-show="!spell.collapsed || filteredSpells.length == 1">
-		<div class="well well-sm">
-			<button class="btn btn-prepare btn-default"
-				ng-click="togglePrepared(spell.name)">{{prepared[spell.name] ? 'Prepared' : 'Unprepared'}}</button>
-			<strong>Casting Time</strong>: {{spell.castingTime}}<br/>
-			<strong>Range</strong>: {{spell.range}} <br/>
-			<strong>Components</strong>: {{spell.components}} <br/>
-			<strong>Duration</strong>: {{spell.duration}} <br/>
+<div ng-hide="spells.length ==0">
+	<div class="form-group">
+		<!-- Class buttons -->
+		<div class="btn-group">
+			<button ng-repeat="(caster,show) in casterFilters" 
+				ng-click="setCasterFilter(caster)"
+				class="btn"
+				ng-class="show ? 'btn-primary':'btn-default'">{{caster}}</button>
+		</div><br/><br/>
+		
+
+		<!-- Level buttons -->
+		<div class="btn-group">
+			<button ng-repeat="i in [0, 1, 2, 3, 4, 5, 6, 7,8,9]"
+				ng-click="toggleLevelFilter(i)"
+				class="btn"
+				ng-class="levelFilters[i] ? 'btn-primary' : 'btn-default'">{{i == 0 ? 'Cantrip' : i}}</button>
 			
 		</div>
-		<div marked="spell.description"></div>
+		<br/><br/>
+		<div class="btn-group">
+			<button class="btn"
+					ng-repeat="(icon,val) in iconFilters"
+					ng-click="toggleShowIconFilter(icon)"
+					ng-class="val ? 'btn-primary' : 'btn-default'">
+				<span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
+			</button>
+		</div>
+		<br/><br/>
+
+		<!--name box -->
+		<div class="input-group">
+		  	<span class="input-group-addon">Name</span>
+	  		<input class="form-control" ng-model="nameQuery"/>
+	  		<span class="input-group-addon clickable"  ng-show="nameQuery.length>0"
+					ng-click="nameQuery = ''">
+	  			<span class="glyphicon glyphicon-remove"></span>
+	  		</span>
+		</div><br/>
 		
+		<div class="panel panel-default">
+		  <div class="panel-body">
+		    <strong>Results:</strong> {{filteredSpells.length}}
+		  </div>
+		</div>
 	</div>
-	
+
+	<article class="panel"
+	 ng-class="'panel-' + levelCssClass(spell.level)"
+	 ng-repeat="spell in filteredSpells = (getSpells() | filter:{name:nameQuery, description:descriptionQuery}  | orderBy:'order' )">
+		<header class="panel-heading"
+			ng-model="spell.collapsed" 
+			ng-click="spell.collapsed=!spell.collapsed">
+			<h3 class="panel-title">
+				{{spell.name}}
+				<span 
+					ng-repeat="(icon,val) in iconFilters"
+					class="glyphicon" 
+					ng-class="'glyphicon-' + icon"
+					ng-show="spellIcons[spell.name][icon]"></span>
+				<em class="spell-level-title spell-level-{{spell.level}}">{{spell.type}}</em>
+			</h3>
+		</header>
+		<div class="panel-body" ng-show="!spell.collapsed || filteredSpells.length == 1">
+			<div class="well well-sm">
+				<div class="btn-group btn-group-icons">
+					<button class="btn"
+							ng-repeat="(icon,val) in iconFilters"
+							ng-click="toggleIconFilter(spell,icon)"
+							ng-class="spellIcons[spell.name][icon] ? 'btn-primary' : 'btn-default'">
+						<span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
+					</button>
+				</div>
+
+				<strong>Casting Time</strong>: {{spell.castingTime}}<br/>
+				<strong>Range</strong>: {{spell.range}} <br/>
+				<strong>Components</strong>: {{spell.components}} <br/>
+				<strong>Duration</strong>: {{spell.duration}} <br/>
+				
+			</div>
+
+			
+			<div marked="spell.description"></div>
+			
+		</div>
 	</article>
+</div>
