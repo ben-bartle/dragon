@@ -5,19 +5,48 @@
     </a>
 </div>
 <div ng-hide="monsters.length==0">
+    <br/>
     <!-- CR buttons -->
    <div class="btn-group">
-      <button ng-repeat="(cr,show) in crFilters" 
+      <button ng-repeat="cr in crFiltersDisplay" 
         ng-click="setCRFilter(cr)"
         class="btn"
-        ng-class="show ? 'btn-primary':'btn-default'">{{cr}}</button>
+        ng-class="crFilters[cr] ? 'btn-primary':'btn-default'">{{cr}}</button>
     </div><br/><br/>
+
+    <!-- Icon Filter -->
+    </div>
+    <br/><br/>
+    <div class="btn-group">
+      <button class="btn"
+          ng-repeat="(icon,val) in monsterIconFilters"
+          ng-click="toggleShowIconFilter(icon)"
+          ng-class="val ? 'btn-primary' : 'btn-default'">
+        <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
+      </button>
+    </div>
+    <br/><br/>
+
+    <!--name box -->
+    <div class="input-group">
+        <span class="input-group-addon">Name</span>
+        <input class="form-control" ng-model="nameQuery"/>
+        <span class="input-group-addon clickable"  ng-show="nameQuery.length>0"
+          ng-click="nameQuery = ''">
+          <span class="glyphicon glyphicon-remove"></span>
+        </span>
+    </div><br/>
     
 
-    <article class="panel panel-info" ng-repeat="monster in monsters">
+    <article class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
         <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
             <h2 class="panel-title">
                 {{monster.name}}
+                <span 
+                  ng-repeat="(icon,val) in monsterIcons[monster.name]"
+                  class="glyphicon" 
+                  ng-class="'glyphicon-' + icon"
+                  ng-show="val"></span>
                 <em>{{monster.type}}</em>
             </h2>
         </header>

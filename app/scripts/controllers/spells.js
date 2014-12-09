@@ -12,19 +12,19 @@ angular.module('dragonApp')
   		$scope.tab="spells";
 
 		$scope.levelFilters = localStorageService.get('levelfilters') 
-			|| [true,true,true,true,true,true,true,true,true,true];
+			|| [true,true,true,false,false,false,false,false,false,false];
 		
 		$scope.spells = localStorageService.get('spells') 
 			|| [];
 		$scope.casterFilters = localStorageService.get('casterFilters') 
-			|| {"All":true,"Bard":true,"Cleric":true,"Druid":true,"Paladin":true,"Ranger":true,"Sorcerer":true,"Warlock":true,"Wizard":true};
+			|| {/*"All":true,*/"Bard":true,"Cleric":false,"Druid":false,"Paladin":false,"Ranger":false,"Sorcerer":false,"Warlock":false,"Wizard":false};
 
 
 		//allow assignment of icons to spells to filter by
 		$scope.spellIcons = localStorageService.get('spellIcons') 
 			|| {};		
 		$scope.iconFilters = localStorageService.get('iconFilters')
-			|| { 'star':false,'ok':false};
+			|| { 'tower':false,'leaf':false,'tint':false,'fire':false};
 
 		$scope.nameQuery = '';
 

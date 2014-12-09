@@ -22,5 +22,16 @@
     <strong>Challenge</strong>: {{monster.challenge}}<br/>
 </div>
 
+<div class="btn-group btn-group-icons">
+    <button class="btn"
+            ng-repeat="(icon,val) in monsterIconFilters"
+            ng-click="toggleIconFilter(monster,icon)"
+            ng-class="monsterIcons[monster.name][icon] ? 'btn-primary' : 'btn-default'">
+        <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
+    </button>
+</div>
+
 <div marked="monster.features"></div>
+<hr/>
 <div marked="monster.actions"></div>
+

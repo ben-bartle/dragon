@@ -22,7 +22,8 @@
 				ng-click="toggleLevelFilter(i)"
 				class="btn"
 				ng-class="levelFilters[i] ? 'btn-primary' : 'btn-default'">{{i == 0 ? 'Cantrip' : i}}</button>
-			
+		
+		<!-- Icon Filter -->
 		</div>
 		<br/><br/>
 		<div class="btn-group">
@@ -54,17 +55,17 @@
 
 	<article class="panel"
 	 ng-class="'panel-' + levelCssClass(spell.level)"
-	 ng-repeat="spell in filteredSpells = (getSpells() | filter:{name:nameQuery, description:descriptionQuery}  | orderBy:'order' )">
+	 ng-repeat="spell in filteredSpells = (getSpells() | filter:{name:nameQuery}  | orderBy:'order' )">
 		<header class="panel-heading"
 			ng-model="spell.collapsed" 
 			ng-click="spell.collapsed=!spell.collapsed">
 			<h3 class="panel-title">
 				{{spell.name}}
 				<span 
-					ng-repeat="(icon,val) in iconFilters"
+					ng-repeat="(icon,val) in spellIcons[spell.name]"
 					class="glyphicon" 
 					ng-class="'glyphicon-' + icon"
-					ng-show="spellIcons[spell.name][icon]"></span>
+					ng-show="val"></span>
 				<em class="spell-level-title spell-level-{{spell.level}}">{{spell.type}}</em>
 			</h3>
 		</header>
