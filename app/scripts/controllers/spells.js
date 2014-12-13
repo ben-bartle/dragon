@@ -9,37 +9,10 @@
  */
 angular.module('dragonApp')
   .controller('SpellsCtrl', function ($scope,$http,$sce,localStorageService) {
-  		$scope.tab="spells";
+  		$scope.tab='spells';
 
-		$scope.levelFilters = localStorageService.get('levelfilters') 
-			|| [true,true,true,false,false,false,false,false,false,false];
-		
-		$scope.spells = localStorageService.get('spells') 
-			|| [];
-		$scope.casterFilters = localStorageService.get('casterFilters') 
-			|| {/*"All":true,*/"Bard":true,"Cleric":false,"Druid":false,"Paladin":false,"Ranger":false,"Sorcerer":false,"Warlock":false,"Wizard":false};
-
-
-		//allow assignment of icons to spells to filter by
-		$scope.spellIcons = localStorageService.get('spellIcons') 
-			|| {};		
-		$scope.iconFilters = localStorageService.get('iconFilters')
-			|| { 'tower':false,'leaf':false,'tint':false,'fire':false};
-
-		$scope.nameQuery = '';
-
-		$scope.toggleShowIconFilter = function(icon) {
-			$scope.iconFilters[icon] = !$scope.iconFilters[icon];
-			localStorageService.set('iconFilters', $scope.iconFilters);
-		}
-		$scope.toggleIconFilter = function(spell, icon){
-			$scope.spellIcons[spell.name] = $scope.spellIcons[spell.name]  || {};
-			$scope.spellIcons[spell.name][icon] = !$scope.spellIcons[spell.name][icon];
-			localStorageService.set('spellIcons',$scope.spellIcons);
-		};
-
-		//pull the spell data in to local storage
-		$scope.loadSpells = function() {
+  		//pull the spell data in to local storage
+		function loadSpells() {
 			$http.get('data/spells.json').success(function(data) {
 				//process each spells data before assigning it
 				for (var i=0;i<data.length;i++) {
@@ -49,9 +22,36 @@ angular.module('dragonApp')
 				$scope.spells = data;
 				localStorageService.set('spells',data);
 			});
+		}
+
+
+		$scope.levelFilters = localStorageService.get('levelfilters') || [true,true,true,false,false,false,false,false,false,false];
+		
+		$scope.spells = localStorageService.get('spells') || [];
+
+		if ($scope.spells.length === 0) {
+			loadSpells();
+		}
+
+		$scope.casterFilters = localStorageService.get('casterFilters') || {'Bard':true,'Cleric':false,'Druid':false,'Paladin':false,'Ranger':false,'Sorcerer':false,'Warlock':false,'Wizard':false};
+
+		//allow assignment of icons to spells to filter by
+		$scope.spellIcons = localStorageService.get('spellIcons') || {};		
+		$scope.iconFilters = localStorageService.get('iconFilters')	|| { 'tower':false,'leaf':false,'tint':false,'fire':false};
+
+		$scope.nameQuery = '';
+
+		$scope.toggleShowIconFilter = function(icon) {
+			$scope.iconFilters[icon] = !$scope.iconFilters[icon];
+			localStorageService.set('iconFilters', $scope.iconFilters);
 		};
 
-	
+		$scope.toggleIconFilter = function(spell, icon){
+			$scope.spellIcons[spell.name] = $scope.spellIcons[spell.name]  || {};
+			$scope.spellIcons[spell.name][icon] = !$scope.spellIcons[spell.name][icon];
+			localStorageService.set('spellIcons',$scope.spellIcons);
+		};
+
 
 		$scope.toggleLevelFilter = function(i) {
 			$scope.levelFilters[i] = !$scope.levelFilters[i];
@@ -86,8 +86,9 @@ angular.module('dragonApp')
 				}
 				
 
-				if (skip)
+				if (skip) {
 					continue;
+				}
 
 				//add if it matches a level and caster filter
 				if ($scope.levelFilters[spell.level]) {

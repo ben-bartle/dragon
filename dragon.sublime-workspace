@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"mon",
+				"monsterIcons"
+			],
+			[
+				"mo",
+				"monsterIconFilters"
+			],
+			[
+				"chal",
+				"challengeVal"
+			],
+			[
+				"Chal",
+				"challengeVal"
+			],
+			[
+				"cha",
+				"challengeVal"
+			],
+			[
 				"th",
 				"thead	Tag"
 			],
@@ -39,6 +59,94 @@
 	},
 	"buffers":
 	[
+		{
+			"file": "app/views/monsters.html",
+			"settings":
+			{
+				"buffer_size": 1950,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/monsterDetails.html",
+			"settings":
+			{
+				"buffer_size": 1475,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/monsters.js",
+			"settings":
+			{
+				"buffer_size": 2547,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/spells.html",
+			"settings":
+			{
+				"buffer_size": 2294,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/data/monsters.json",
+			"settings":
+			{
+				"buffer_size": 234157,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "Gruntfile.js",
+			"settings":
+			{
+				"buffer_size": 9722,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/spells.js",
+			"settings":
+			{
+				"buffer_size": 3388,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/spellDetails.html",
+			"settings":
+			{
+				"buffer_size": 683,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/scripts/controllers/main.js",
+			"settings":
+			{
+				"buffer_size": 443,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "app/views/partials/nav.html",
+			"settings":
+			{
+				"buffer_size": 360,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "app/views/main.html",
+			"settings":
+			{
+				"buffer_size": 850,
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"command_palette":
@@ -108,20 +216,28 @@
 	},
 	"file_history":
 	[
-		"/D/github/dragon/dist/index.html",
+		"/C/Users/Ben/AppData/Local/Temp/scp35199/var/www/cgi-bin/New file",
+		"/D/github/dragon/app/views/main.html",
+		"/D/github/dragon/app/scripts/controllers/monsters.js",
+		"/D/github/dragon/app/data/monsters.json",
+		"/D/github/dragon/Gruntfile.js",
+		"/D/github/dragon/app/scripts/controllers/spells.js",
+		"/D/github/dragon/app/views/partials/spellDetails.html",
+		"/D/github/dragon/app/views/partials/monsterDetails.html",
+		"/D/github/dragon/app/views/spells.html",
+		"/D/github/dragon/app/styles/main.css",
 		"/D/github/dragon/app/index.html",
+		"/D/github/dragon/app/scripts/app.js",
+		"/D/github/dragon/app/scripts/controllers/main.js",
+		"/D/github/dragon/app/views/monsters.html",
+		"/D/github/dragon/app/views/partials/nav.html",
+		"/D/github/dragon/app/views/templates/nav.html",
+		"/D/github/dragon/dist/index.html",
 		"/D/github/dragon/.gitignore",
 		"/D/github/dragon-prod/Gruntfile.js",
 		"/D/github/dragon-prod/app/scripts/app.js",
 		"/D/github/dragon/Gruntfile-prod.js",
-		"/D/github/dragon/app/scripts/app.js",
-		"/D/github/dragon/app/views/main.html",
-		"/D/github/dragon/app/scripts/controllers/main.js",
-		"/D/github/dragon/app/views/monsters.html",
-		"/D/github/dragon/app/views/spells.html",
-		"/D/github/dragon/app/scripts/controllers/spells.js",
 		"/D/github/dragon - prod/Gruntfile.js",
-		"/D/github/dragon/Gruntfile.js",
 		"/D/github/dragon/app/scripts/ngStorage.js",
 		"/D/github/mean-dragon-2/scripts/monsterController.js",
 		"/D/github/mean-dragon-2/scripts/spellController.js",
@@ -142,17 +258,14 @@
 		"/D/github/mean-dragon/packages/system/package.json",
 		"/D/github/mean-dragon/LICENSE",
 		"/D/github/dragon/bower.json",
-		"/D/github/dragon/app/scripts/controllers/monsters.js",
 		"/D/github/dragon/app/scripts/marked.js",
 		"/D/github/dragon/package.json",
-		"/D/github/dragon/app/styles/main.css",
 		"/C/Users/Ben/Desktop/spells/controllers.js",
 		"/C/Users/Ben/Desktop/spells/custom.css",
 		"/C/Users/Ben/Desktop/spells/spells.html",
 		"/C/Users/Ben/Downloads/monsters.csv",
 		"/D/github/dragon/app/data/monsterCR.json",
 		"/C/Users/Ben/Desktop/monsters.txt",
-		"/D/github/dragon/app/data/monsters.json",
 		"/D/github/dragon/.git/data/monsterCR.json",
 		"/D/github/dragon/.git/config",
 		"/C/Users/Ben/Desktop/spells/bootstrap/css/bootstrap.css",
@@ -191,6 +304,19 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"\"",
+			" == ",
+			"\"",
+			"\\sHit:\\s",
+			"Ranged Weapon Attack",
+			"__",
+			"\\*\\*Hit:\\*\\*",
+			"&nbsp;",
+			"\\{name:",
+			"images",
+			"    ",
+			"  ",
+			"tab",
 			"livere",
 			"npm-",
 			"\"",
@@ -270,8 +396,309 @@
 	"groups":
 	[
 		{
+			"selected": 6,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "app/views/monsters.html",
+					"settings":
+					{
+						"buffer_size": 1950,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								439,
+								439
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "app/views/partials/monsterDetails.html",
+					"settings":
+					{
+						"buffer_size": 1475,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1179,
+								1195
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "app/scripts/controllers/monsters.js",
+					"settings":
+					{
+						"buffer_size": 2547,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2506,
+								2506
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 180.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "app/views/spells.html",
+					"settings":
+					{
+						"buffer_size": 2294,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								107,
+								107
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "app/data/monsters.json",
+					"settings":
+					{
+						"buffer_size": 234157,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 7086.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Gruntfile.js",
+					"settings":
+					{
+						"buffer_size": 9722,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 5535.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "app/scripts/controllers/spells.js",
+					"settings":
+					{
+						"buffer_size": 3388,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								893,
+								893
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "app/views/partials/spellDetails.html",
+					"settings":
+					{
+						"buffer_size": 683,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								390,
+								390
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "app/scripts/controllers/main.js",
+					"settings":
+					{
+						"buffer_size": 443,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								308,
+								308
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "app/views/partials/nav.html",
+					"settings":
+					{
+						"buffer_size": 360,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								348,
+								348
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "app/views/main.html",
+					"settings":
+					{
+						"buffer_size": 850,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								850,
+								850
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"type": "text"
+				}
 			]
 		}
 	],
@@ -281,7 +708,7 @@
 	},
 	"input":
 	{
-		"height": 0.0
+		"height": 31.0
 	},
 	"layout":
 	{
@@ -331,6 +758,6 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 409.0,
+	"side_bar_width": 230.0,
 	"status_bar_visible": true
 }

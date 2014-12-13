@@ -1,21 +1,19 @@
 <div ng-include="'/views/partials/nav.html'" ></div>
 <div ng-show="monsters.length ==0">
-    <a ng-click="loadMonsters()"
-        class="btn btn-lg">Load Monster Data
-    </a>
+    Loading Monster Data
 </div>
-<div ng-hide="monsters.length==0">
+<div ng-show="monsters.length>0" >
+  <div class="form-group">
     <br/>
     <!-- CR buttons -->
-   <div class="btn-group">
+    <div class="btn-group">
       <button ng-repeat="cr in crFiltersDisplay" 
         ng-click="setCRFilter(cr)"
         class="btn"
         ng-class="crFilters[cr] ? 'btn-primary':'btn-default'">{{cr}}</button>
-    </div><br/><br/>
+    </div>
 
     <!-- Icon Filter -->
-    </div>
     <br/><br/>
     <div class="btn-group">
       <button class="btn"
@@ -36,7 +34,7 @@
           <span class="glyphicon glyphicon-remove"></span>
         </span>
     </div><br/>
-    
+    </div>
 
     <article class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
         <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">

@@ -1,6 +1,6 @@
 'use strict';
 
-/**
+/***
  * @ngdoc function
  * @name dragonApp.controller:MainCtrl
  * @description
@@ -8,6 +8,12 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-	.controller('MainCtrl', function ($scope) {
-		$scope.tab='home';		
+	.controller('MainCtrl', function ($scope,localStorageService) {
+		$scope.tab='home';	
+		$scope.hideReset = localStorageService.length === 0;
+		$scope.reset = function(){
+			localStorageService.clearAll();
+			$scope.resetOk = false;
+			$scope.hideReset = true;
+		};	
 	});
