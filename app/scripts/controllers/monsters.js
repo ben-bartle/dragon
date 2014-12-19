@@ -8,8 +8,25 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService) {
-		function loadMonsters (){
+	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService,$resource) {
+
+		var Monster = $resource('http://192.168.42.128/=/monsters/:id');
+
+		$scope.monsters = Monster.query({},function(){
+			var data = $scope.monsters;
+			for (var i=0;i<data.length;i++) {
+				data[i].strMod = toMod(data[i].str);
+				data[i].dexMod = toMod(data[i].dex);
+				data[i].conMod = toMod(data[i].con);
+				data[i].intMod = toMod(data[i].int);
+				data[i].wisMod = toMod(data[i].wis);
+				data[i].chaMod = toMod(data[i].cha);
+				data[i].challengeVal = data[i].challenge.replace(/\s\(.*$/,'');
+				data[i].collapsed = true;
+			}
+			$scope.monsters = data;
+		});
+/*		function loadMonsters (){
 			$http.get('/data/monsters.json').success(function(data) {
 				for (var i=0;i<data.length;i++) {
 					data[i].strMod = toMod(data[i].str);
@@ -24,14 +41,14 @@ angular.module('dragonApp')
 				$scope.monsters = data;
 				localStorageService.set('monsters',data);
 			});
-		}
+		}*/
 
 
   		$scope.tab='monsters';
-		$scope.monsters = localStorageService.get('monsters') || [];
+	/*	$scope.monsters = localStorageService.get('monsters') || [];
 		if ($scope.monsters.length === 0) {
 			loadMonsters();
-		}
+		}*/
 
 		$scope.crFilters = localStorageService.get('crFilters')  || {'0':true, '1/8':true,'1/4':true,'1/2':true,'1':true,'2':true,'3':true,'4':true,'5':true};
 		$scope.crFiltersDisplay = ['0','1/8','1/4','1/2','1','2','3','4','5'];
