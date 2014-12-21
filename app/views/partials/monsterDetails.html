@@ -7,10 +7,20 @@
         </thead>
         <tbody>
             <tr>
-                <td>{{monster.str}}</td><td>{{monster.dex}}</td><td>{{monster.con}}</td><td>{{monster
-                .int}}</td><td>{{monster.wis}}</td><td>{{monster.cha}}</td>
-            <tr></tr>
-                <td>({{monster.strMod}})</td><td>({{monster.dexMod}})</td><td>({{monster.conMod}})</td><td>({{monster.intMod}})</td><td>({{monster.wisMod}})</td><td>({{monster.chaMod}})</td>
+                <td>{{monster.str}}</td>
+                <td>{{monster.dex}}</td>
+                <td>{{monster.con}}</td>
+                <td>{{monster.int}}</td>
+                <td>{{monster.wis}}</td>
+                <td>{{monster.cha}}</td>
+            </tr>
+            <tr>
+                <td>({{toMod(monster.str)}})</td>
+                <td>({{toMod(monster.dex)}})</td>
+                <td>({{toMod(monster.con)}})</td>
+                <td>({{toMod(monster.int)}})</td>
+                <td>({{toMod(monster.wis)}})</td>
+                <td>({{toMod(monster.cha)}})</td>
             </tr>
         </tbody>
     </table>
@@ -30,6 +40,10 @@
         <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
     </button>
 </div>
+<button class="btn btn-default"
+        ng-click="monster.editing = !monster.editing">
+    <span class="glyphicon glyphicon-pencil"></span>
+</button>
 
 <div marked="monster.features"></div>
 <hr/>

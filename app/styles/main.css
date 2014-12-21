@@ -88,11 +88,14 @@ body {
 .panel-title span {
   margin-left:5px;
 }
-
+/*
 .panel-monster table {
   width:50%;
   float:right;
 }
+.panel-monster table input {
+  width:100px;
+}*/
 
 .btn-group-icons {
   float:right;
