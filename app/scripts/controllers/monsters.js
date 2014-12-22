@@ -19,7 +19,7 @@ angular.module('dragonApp')
 		Monster.query({},function(data){
 			console.log(data);
 			for (var i=0;i<data.length;i++) {
-				data[i].challengeVal = (data[i].challenge || '').replace(/\s\(.*$/,'');
+				data[i].challengeVal = getChallengeValue(data[i].challenge);
 				data[i].collapsed = true;
 			}
 			$scope.monsters = data;
@@ -30,11 +30,10 @@ angular.module('dragonApp')
 		$scope.crFilters = localStorageService.get('crFilters')  || {'0':true, '1/8':true,'1/4':true,'1/2':true,'1':true,'2':true,'3':true,'4':true,'5':true};
 		$scope.crFiltersDisplay = ['0','1/8','1/4','1/2','1','2','3','4','5'];
 
-		$scope.createMonster = function(name){
-			var m = new Monster();
-			m.name = name;
-			m.$save();
-		};
+		function getChallengeValue(challenge){
+			return (challenge || '').replace(/\s*\(.*$/,'');
+		}
+
 
 		$scope.monsterIcons = localStorageService.get('monsterIcons') || {};		
 		$scope.monsterIconFilters = localStorageService.get('monsterIconFilters') || { 'tower':false,'leaf':false,'tint':false,'fire':false};
@@ -62,6 +61,10 @@ angular.module('dragonApp')
 		};
 
 		$scope.showMonster = function(monster){
+			if (!monster.challengeVal || monster.challengeVal.length === 0){
+				return true;
+			}
+
 			if (!$scope.crFilters[monster.challengeVal]) {
 				return false;
 			}
@@ -80,8 +83,28 @@ angular.module('dragonApp')
 			return true;
 		};
 
-
+		$scope.updateMonster = function(monster){
+			monster.challengeVal = getChallengeValue(monster.challenge);
+			monster.$update(); 
+			monster.editing = !monster.editing;
+		};
 		
-	
+		$scope.createMonster = function(name){
+			var m = new Monster();
+			m.name = name;
+			
+			console.log(m.$save());
+			console.log(m._id);
+
+			m.editing = true;
+			m.collapsed = false;
+
+			//todo - make sure the push/sort isn't causing a bunch of unecessary operations
+			$scope.monsters.push(m);
+			$scope.monsters = $scope.monsters.sort(function(a,b){
+				return ( ( a.name === b.name ) ? 0 : ( ( a.name > b.name ) ? 1 : -1 ) );
+			});
+		};
+
 
 	});

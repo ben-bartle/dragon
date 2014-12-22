@@ -1,61 +1,86 @@
-<div class="well well-sm">
 <form novalidate class="css-form">
-    <input type="text" ng-model="monster.name" class="form-control" />
-    <table class="table">
-        <thead>
-            <tr>
-                <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td><input type="number" class="form-control" ng-model="monster.str" /></td>
-                <td><input type="number" class="form-control" ng-model="monster.dex" /></td>
-                <td><input type="number" class="form-control" ng-model="monster.con" /></td>
-                <td><input type="number" class="form-control" ng-model="monster.int" /></td>
-                <td><input type="number" class="form-control" ng-model="monster.wis" /></td>
-                <td><input type="number" class="form-control" ng-model="monster.cha" /></td>
-            </tr>
-            <tr>
-                <td>({{toMod(monster.str)}})</td>
-                <td>({{toMod(monster.dex)}})</td>
-                <td>({{toMod(monster.con)}})</td>
-                <td>({{toMod(monster.int)}})</td>
-                <td>({{toMod(monster.wis)}})</td>
-                <td>({{toMod(monster.cha)}})</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="row">    
+        <div class="col-md-12">
+            <button class="btn btn-default"
+                ng-click="updateMonster(monster)">
+                <span class="glyphicon glyphicon-floppy-disk"></span>
+            </button>
+            <button class="btn btn-danger"
+                    ng-click="monster.$delete()">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
 
-    <strong>Armor Class</strong>: <input type="text" class="form-control" ng-model="monster.armorClass" /><br/>
-    <strong>Hit Points</strong>: <input type="text" class="form-control" ng-model="monster.hitPoints" /><br/>
-    <strong>Skills</strong>: <input type="text" class="form-control" ng-model="monster.skills" /><br/>
-    <strong>Senses</strong>: <input type="text" class="form-control" ng-model="monster.senses" /><br/>
-    <strong>Languages</strong>: <input type="text" class="form-control" ng-model="monster.languages" /><br/>
-    <strong>Challenge</strong>: <input type="text" class="form-control" ng-model="monster.challenge" /><br/>
-</div>
+            <br/>
+        </div>  
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <strong>Name</strong>: <input type="text" ng-model="monster.name" class="form-control" required /><br/>
+            <strong>Type</strong>: <input type="text" ng-model="monster.size" class="form-control" required /><br/>
+        </div>  
+    </div>  
+    <div class="row">
+        <div class="col-md-12">
+            <div class="well well-sm">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><input type="number" class="form-control" ng-model="monster.str" required /></td>
+                            <td><input type="number" class="form-control" ng-model="monster.dex" required /></td>
+                            <td><input type="number" class="form-control" ng-model="monster.con" required /></td>
+                            <td><input type="number" class="form-control" ng-model="monster.int" required /></td>
+                            <td><input type="number" class="form-control" ng-model="monster.wis" required /></td>
+                            <td><input type="number" class="form-control" ng-model="monster.cha" required /></td>
+                        </tr>
+                        <tr>
+                            <td>({{toMod(monster.str)}})</td>
+                            <td>({{toMod(monster.dex)}})</td>
+                            <td>({{toMod(monster.con)}})</td>
+                            <td>({{toMod(monster.int)}})</td>
+                            <td>({{toMod(monster.wis)}})</td>
+                            <td>({{toMod(monster.cha)}})</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>  
+    <div class="row">
+        <div class="col-md-6">
+            <strong>Armor Class</strong>: <input type="text" class="form-control" ng-model="monster.armorClass" required /><br/>
+            <strong>Hit Points</strong>: <input type="text" class="form-control" ng-model="monster.hitPoints" required /><br/>
+            <strong>Challenge</strong>: <input type="text" class="form-control" ng-model="monster.challenge" required /><br/>        
+        </div>
+        <div class="col-md-6">
+            <strong>Skills</strong>: <input type="text" class="form-control" ng-model="monster.skills" /><br/>
+            <strong>Senses</strong>: <input type="text" class="form-control" ng-model="monster.senses" /><br/>
+            <strong>Languages</strong>: <input type="text" class="form-control" ng-model="monster.languages" /><br/>
+        </div>
+    </div>
 
-<div class="btn-group btn-group-icons">
-    <button class="btn"
-            ng-repeat="(icon,val) in monsterIconFilters"
-            ng-click="toggleIconFilter(monster,icon)"
-            ng-class="monsterIcons[monster.name][icon] ? 'btn-primary' : 'btn-default'">
-        <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
-    </button>
-</div>
-<button class="btn btn-default"
-        ng-click="monster.$update(); monster.editing = !monster.editing">
-    <span class="glyphicon glyphicon-floppy-disk"></span>
-</button>
-<button class="btn btn-default"
-        ng-click="monster.$delete()">
-    <span class="glyphicon glyphicon-remove"></span>
-</button>
-<textarea ng-model="monster.features" placeholder="features" />
-<div marked="monster.features"></div>
-<hr/>
-<textarea ng-model="monster.actions" placeholder="actions" />
+    <div class="row">
+        <div class="col-md-12">
+            <strong>Features</strong>:
+            <textarea class="form-control" ng-model="monster.features" /><br/>
+            <div class="well well-sm" marked="monster.features"></div>
+            <hr/>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <strong>Actions</strong>:
+            <textarea class="form-control" ng-model="monster.actions" /><br/>
+            <div class="well well-sm" marked="monster.actions"></div>
+        </div>
+    </div>
 
+    
+            
 </form>
-<div marked="monster.actions"></div>
+
 

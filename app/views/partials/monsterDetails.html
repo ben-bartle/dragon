@@ -1,35 +1,41 @@
-<div class="well well-sm">
-    <table class="table">
-        <thead>
-            <tr>
-                <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{monster.str}}</td>
-                <td>{{monster.dex}}</td>
-                <td>{{monster.con}}</td>
-                <td>{{monster.int}}</td>
-                <td>{{monster.wis}}</td>
-                <td>{{monster.cha}}</td>
-            </tr>
-            <tr>
-                <td>({{toMod(monster.str)}})</td>
-                <td>({{toMod(monster.dex)}})</td>
-                <td>({{toMod(monster.con)}})</td>
-                <td>({{toMod(monster.int)}})</td>
-                <td>({{toMod(monster.wis)}})</td>
-                <td>({{toMod(monster.cha)}})</td>
-            </tr>
-        </tbody>
-    </table>
-    <strong>Armor Class</strong>: {{monster.armorClass}}<br/>
-    <strong>Hit Points</strong>: {{monster.hitPoints}}<br/>
-    <strong>Skills</strong>: {{monster.skills}}<br/>
-    <strong>Senses</strong>: {{monster.senses}}<br/>
-    <strong>Languages</strong>: {{monster.languages}}<br/>
-    <strong>Challenge</strong>: {{monster.challenge}}<br/>
+<div class="row">
+    <div class="col-md-6 col-md-push-6">
+        <div class="well well-sm">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{monster.str}}</td>
+                        <td>{{monster.dex}}</td>
+                        <td>{{monster.con}}</td>
+                        <td>{{monster.int}}</td>
+                        <td>{{monster.wis}}</td>
+                        <td>{{monster.cha}}</td>
+                    </tr>
+                    <tr>
+                        <td>({{toMod(monster.str)}})</td>
+                        <td>({{toMod(monster.dex)}})</td>
+                        <td>({{toMod(monster.con)}})</td>
+                        <td>({{toMod(monster.int)}})</td>
+                        <td>({{toMod(monster.wis)}})</td>
+                        <td>({{toMod(monster.cha)}})</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6 col-md-pull-6">
+        <strong>Armor Class</strong>: {{monster.armorClass}}<br/>
+        <strong>Hit Points</strong>: {{monster.hitPoints}}<br/>
+        <strong>Skills</strong>: {{monster.skills}}<br/>
+        <strong>Senses</strong>: {{monster.senses}}<br/>
+        <strong>Languages</strong>: {{monster.languages}}<br/>
+        <strong>Challenge</strong>: {{monster.challenge}}<br/>
+    </div>
 </div>
 
 <div class="btn-group btn-group-icons">

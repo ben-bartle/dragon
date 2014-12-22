@@ -36,7 +36,7 @@
     </div><br/>
     </div>
 
-    <article class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="true || showMonster(monster)">
+    <article class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
         <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
             <h2 class="panel-title">
                 {{monster.name}}
@@ -45,7 +45,7 @@
                   class="glyphicon" 
                   ng-class="'glyphicon-' + icon"
                   ng-show="val"></span>
-                <em>{{monster.type}}</em>
+                <em>{{monster.size}}</em>
             </h2>
         </header>
         <div class="panel-monster panel-body" 
