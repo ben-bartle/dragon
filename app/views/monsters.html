@@ -28,7 +28,7 @@
     <!--name box -->
     <div class="input-group">
         <span class="input-group-addon">Name</span>
-        <input class="form-control" ng-model="nameQuery"/>
+        <input type="text" class="form-control" ng-model="nameQuery"/>
         <span class="input-group-addon clickable"  ng-show="nameQuery.length>0"
           ng-click="nameQuery = ''">
           <span class="glyphicon glyphicon-remove"></span>
@@ -36,7 +36,7 @@
     </div><br/>
     </div>
 
-    <article class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
+    <article id="{{monster._id}}" class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="true || showMonster(monster)">
         <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
             <h2 class="panel-title">
                 {{monster.name}}
@@ -54,5 +54,12 @@
     </article>
 </div>
 
+<div class="input-group">
+  <input type="text" ng-model="createName" class="form-control" placeholder="Name">
+  <span class="input-group-btn">
+    <button class="btn btn-success" type="button">
+      <span class="glyphicon glyphicon-plus-sign" ng-click="createMonster(createName)">  
+    </button>
+  </span>
+</div>
 
-<input type="text" ng-model="createName" /><button ng-click="createMonster(createName)">save</button>

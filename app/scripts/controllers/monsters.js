@@ -8,7 +8,7 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService,$resource) {
+	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService,$resource ) { //,$location,$anchorScroll
 
 		var Monster = $resource('http://localhost:3000/=/monsters/:id',{ id: '@_id' }, {
 	    	update: {
@@ -17,10 +17,11 @@ angular.module('dragonApp')
 	    });
 
 		Monster.query({},function(data){
-			console.log(data);
+			
 			for (var i=0;i<data.length;i++) {
 				data[i].challengeVal = getChallengeValue(data[i].challenge);
 				data[i].collapsed = true;
+				console.log(data[i].name);
 			}
 			$scope.monsters = data;
 		});
@@ -83,6 +84,14 @@ angular.module('dragonApp')
 			return true;
 		};
 
+		$scope.deleteMonster = function(monster){
+			var index = $scope.monsters.indexOf(monster);
+			if (index > -1) {
+			    $scope.monsters.splice(index, 1);
+			}
+			monster.$delete();
+		};
+
 		$scope.updateMonster = function(monster){
 			monster.challengeVal = getChallengeValue(monster.challenge);
 			monster.$update(); 
@@ -93,17 +102,24 @@ angular.module('dragonApp')
 			var m = new Monster();
 			m.name = name;
 			
-			console.log(m.$save());
-			console.log(m._id);
+			m.$save(function(response){
+				m.editing = true;
+				m.collapsed = false;
+				m._id = response._id;
 
-			m.editing = true;
-			m.collapsed = false;
 
-			//todo - make sure the push/sort isn't causing a bunch of unecessary operations
-			$scope.monsters.push(m);
-			$scope.monsters = $scope.monsters.sort(function(a,b){
-				return ( ( a.name === b.name ) ? 0 : ( ( a.name > b.name ) ? 1 : -1 ) );
+				//todo - make sure the push/sort isn't causing a bunch of unecessary operations
+				$scope.monsters.push(m);
+				$scope.monsters = $scope.monsters.sort(function(a,b){
+					return ( ( a.name === b.name ) ? 0 : ( ( a.name > b.name ) ? 1 : -1 ) );
+				});
+
+				//scroll to the new item
+				//doesn't work - don't think the item is in place yet
+				//$location.hash(m._id);
+				//$anchorScroll();
 			});
+
 		};
 
 

@@ -1,16 +1,15 @@
-<form novalidate class="css-form">
+<form novalidate>
     <div class="row">    
         <div class="col-md-12">
-            <button class="btn btn-default"
+            <button class="btn btn-danger edit-monster"
+                    ng-click="deleteMonster(monster)">
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+            &nbsp;&nbsp;
+            <button class="btn btn-default edit-monster"
                 ng-click="updateMonster(monster)">
                 <span class="glyphicon glyphicon-floppy-disk"></span>
             </button>
-            <button class="btn btn-danger"
-                    ng-click="monster.$delete()">
-                <span class="glyphicon glyphicon-trash"></span>
-            </button>
-
-            <br/>
         </div>  
     </div>
     <div class="row">

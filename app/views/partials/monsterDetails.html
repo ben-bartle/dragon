@@ -29,6 +29,10 @@
         </div>
     </div>
     <div class="col-md-6 col-md-pull-6">
+        <button ng-show="!monster.collapsed && !monster.editing" class="btn btn-default edit-monster"
+                ng-click="monster.editing = !monster.editing">
+            <span class="glyphicon glyphicon-pencil"></span>
+        </button>
         <strong>Armor Class</strong>: {{monster.armorClass}}<br/>
         <strong>Hit Points</strong>: {{monster.hitPoints}}<br/>
         <strong>Skills</strong>: {{monster.skills}}<br/>
@@ -46,10 +50,7 @@
         <span class="glyphicon" ng-class="'glyphicon-' + icon"></span>
     </button>
 </div>
-<button class="btn btn-default"
-        ng-click="monster.editing = !monster.editing">
-    <span class="glyphicon glyphicon-pencil"></span>
-</button>
+
 
 <div marked="monster.features"></div>
 <hr/>
