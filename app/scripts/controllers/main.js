@@ -16,4 +16,7 @@ angular.module('dragonApp')
 			$scope.resetOk = false;
 			$scope.hideReset = true;
 		};	
+		$scope.setApiKey = function(){
+			localStorageService.set('x-api-key',$scope.apikey);
+		};
 	});

@@ -29,7 +29,7 @@
         </div>
     </div>
     <div class="col-md-6 col-md-pull-6">
-        <button ng-show="!monster.collapsed && !monster.editing" class="btn btn-default edit-monster"
+        <button ng-show="apikey.length > 0 && !monster.editing" class="btn btn-default edit-monster"
                 ng-click="monster.editing = !monster.editing">
             <span class="glyphicon glyphicon-pencil"></span>
         </button>

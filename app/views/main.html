@@ -8,6 +8,9 @@
 			<a class="btn btn-success btn-lg" ng-click="resetOk=false"  ng-show="resetOk">No. Do not reset.</a>
 			<a class="btn btn-danger btn-lg" ng-click="reset()"  ng-show="resetOk">Yes. Reset the data. <span class="glyphicon glyphicon-exclamation-sign"></span></a>
 		</p>
+		<p>
+		<input type="text" ng-model="apikey" /><button ng-click="setApiKey()">Set key</button>
+		</p>
 	
 	</div>
 </div>

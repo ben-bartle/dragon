@@ -9,25 +9,35 @@
  */
 angular.module('dragonApp')
 	.controller('MonstersCtrl', function ($scope,$http,$sce,localStorageService,$resource ) { //,$location,$anchorScroll
+		$scope.tab='monsters';
+		$scope.apikey = localStorageService.get('x-api-key');
 
 		var Monster = $resource('http://localhost:3000/=/monsters/:id',{ id: '@_id' }, {
 	    	update: {
-	      		method: 'PUT' // this method issues a PUT request
+	      		method: 'PUT', // this method issues a PUT request
+	      		headers: { 'x-api-key' : $scope.apikey }
+	      	},
+	      	delete: {
+  				method: 'DELETE', // this method issues a DELETE request
+	      		headers: { 'x-api-key' : $scope.apikey }
+	      	},
+	      	save: {
+	      		method: 'POST', // this method issues a POST request
+	      		headers: { 'x-api-key' : $scope.apikey }
 	      	}
-	    });
-
+    	});
+		
 		Monster.query({},function(data){
 			
 			for (var i=0;i<data.length;i++) {
 				data[i].challengeVal = getChallengeValue(data[i].challenge);
 				data[i].collapsed = true;
-				console.log(data[i].name);
+				//console.log(data[i].name);
 			}
 			$scope.monsters = data;
 		});
 
-  		$scope.tab='monsters';
-
+  
 		$scope.crFilters = localStorageService.get('crFilters')  || {'0':true, '1/8':true,'1/4':true,'1/2':true,'1':true,'2':true,'3':true,'4':true,'5':true};
 		$scope.crFiltersDisplay = ['0','1/8','1/4','1/2','1','2','3','4','5'];
 
