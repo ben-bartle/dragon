@@ -38,8 +38,8 @@ angular.module('dragonApp')
 		});
 
   
-		$scope.crFilters = localStorageService.get('crFilters')  || {'0':true, '1/8':true,'1/4':true,'1/2':true,'1':true,'2':true,'3':true,'4':true,'5':true};
-		$scope.crFiltersDisplay = ['0','1/8','1/4','1/2','1','2','3','4','5'];
+		$scope.crFilters = localStorageService.get('crFilters')  || {'0':true, '1/8':true,'1/4':true,'1/2':true,'1':true,'2':true,'3':true,'4':true,'5':true,'+':true};
+		$scope.crFiltersDisplay = ['0','1/8','1/4','1/2','1','2','3','4','5','+'];
 
 		function getChallengeValue(challenge){
 			return (challenge || '').replace(/\s*\(.*$/,'');
@@ -77,6 +77,9 @@ angular.module('dragonApp')
 			}
 
 			if (!$scope.crFilters[monster.challengeVal]) {
+				if ($scope.crFilters[monster.challengeVal] === undefined) {
+					return $scope.crFilters['+'];
+				}
 				return false;
 			}
 
@@ -109,6 +112,7 @@ angular.module('dragonApp')
 		};
 		
 		$scope.createMonster = function(name){
+			$scope.createName = '';
 			var m = new Monster();
 			m.name = name;
 			

@@ -36,7 +36,7 @@
     </div><br/>
     </div>
 
-    <article id="{{monster._id}}" class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="true || showMonster(monster)">
+    <article id="{{monster._id}}" class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
         <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
             <h2 class="panel-title">
                 {{monster.name}}
@@ -54,7 +54,7 @@
     </article>
 </div>
 
-<div class="input-group">
+<div class="input-group" ng-show="apikey.length > 0">
   <input type="text" ng-model="createName" class="form-control" placeholder="Name">
   <span class="input-group-btn">
     <button class="btn btn-success" type="button">

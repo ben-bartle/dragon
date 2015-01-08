@@ -13,7 +13,12 @@
     <strong>Components</strong>: {{spell.components}} <br/>
     <strong>Duration</strong>: {{spell.duration}} <br/>
     
+    
 </div>
 
+<button ng-show="apikey.length > 0 && !spell.editing" class="btn btn-default edit-spell"
+        ng-click="spell.editing = !spell.editing">
+    <span class="glyphicon glyphicon-pencil"></span>
+</button>
 
 <div marked="spell.description"></div>

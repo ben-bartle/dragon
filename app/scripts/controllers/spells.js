@@ -8,31 +8,38 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-  .controller('SpellsCtrl', function ($scope,$http,$sce,localStorageService) {
+  .controller('SpellsCtrl', function ($scope,$http,$sce,localStorageService,$resource) {
   		$scope.tab='spells';
 
-  		//pull the spell data in to local storage
-		function loadSpells() {
-			$http.get('data/spells.json').success(function(data) {
-				//process each spells data before assigning it
-				for (var i=0;i<data.length;i++) {
-					data[i].collapsed = true;
-					data[i].order = data[i].level + '_' + data[i].name;
-				}
-				$scope.spells = data;
-				localStorageService.set('spells',data);
-			});
-		}
+		$scope.apikey = localStorageService.get('x-api-key');
+
+		var Spell = $resource('http://localhost:3000/=/spells/:id',{ id: '@_id' }, {
+	    	update: {
+	      		method: 'PUT', // this method issues a PUT request
+	      		headers: { 'x-api-key' : $scope.apikey }
+	      	},
+	      	delete: {
+  				method: 'DELETE', // this method issues a DELETE request
+	      		headers: { 'x-api-key' : $scope.apikey }
+	      	},
+	      	save: {
+	      		method: 'POST', // this method issues a POST request
+	      		headers: { 'x-api-key' : $scope.apikey }
+	      	}
+    	});
+		
+		Spell.query({},function(data){
+			for (var i=0;i<data.length;i++) {
+				data[i].collapsed = true;
+				data[i].order = data[i].level + '_' + data[i].name;
+			}
+			$scope.spells = data;
+		});
 
 
 		$scope.levelFilters = localStorageService.get('levelfilters') || [true,true,true,false,false,false,false,false,false,false];
 		
-		$scope.spells = localStorageService.get('spells') || [];
-
-		if ($scope.spells.length === 0) {
-			loadSpells();
-		}
-
+		
 		$scope.casterFilters = localStorageService.get('casterFilters') || {'Bard':true,'Cleric':false,'Druid':false,'Paladin':false,'Ranger':false,'Sorcerer':false,'Warlock':false,'Wizard':false};
 
 		//allow assignment of icons to spells to filter by
@@ -64,6 +71,12 @@ angular.module('dragonApp')
 				$scope.casterFilters[c] = (c === input) || input === 'All';
 			}
 			localStorageService.set('casterFilters',$scope.casterFilters);
+		};
+
+		$scope.updateSpell = function (spell) {
+			spell.editing = !spell.editing;
+			spell.order = spell.level + '_' + spell.name;
+			spell.$update(); 
 		};
 
 		$scope.getSpells = function() {

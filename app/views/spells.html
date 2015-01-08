@@ -6,6 +6,7 @@
 
 <div ng-hide="spells.length ==0">
 	<div class="form-group">
+		<br/>
 		<!-- Class buttons -->
 		<div class="btn-group">
 			<button ng-repeat="(caster,show) in casterFilters" 
@@ -69,7 +70,9 @@
 			</h3>
 		</header>
 		 <div class="panel-body" 
-             ng-include="(!spell.collapsed || filteredSpells.length == 1) ? '/views/partials/spellDetails.html':''" >
+             ng-include="spell.collapsed ? '' : (spell.editing ? '/views/partials/spellEdit.html' : '/views/partials/spellDetails.html')" >
         </div>
+
+         
 	</article>
 </div>
