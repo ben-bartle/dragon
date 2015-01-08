@@ -8,12 +8,18 @@
  * Controller of the dragonApp
  */
 angular.module('dragonApp')
-  .controller('SpellsCtrl', function ($scope,$http,$sce,localStorageService,$resource) {
+  .controller('SpellsCtrl', function ($scope,$http,$sce,localStorageService,$resource,$location) {
   		$scope.tab='spells';
 
 		$scope.apikey = localStorageService.get('x-api-key');
 
-		var Spell = $resource('http://localhost:3000/=/spells/:id',{ id: '@_id' }, {
+		//hack for correct endpt in dev - should be moved to some type of config
+		var endpt = '/=/spells/:id'; 
+		if ($location.host().indexOf('localhost') !== -1){
+			endpt = 'http://localhost:3000' + endpt;
+		}
+
+		var Spell = $resource(endpt,{ id: '@_id' }, {
 	    	update: {
 	      		method: 'PUT', // this method issues a PUT request
 	      		headers: { 'x-api-key' : $scope.apikey }
