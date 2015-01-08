@@ -34,24 +34,25 @@
           <span class="glyphicon glyphicon-remove"></span>
         </span>
     </div><br/>
-    </div>
+ 
+  </div>
 
-    <article id="{{monster._id}}" class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
-        <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
-            <h2 class="panel-title">
-                {{monster.name}}
-                <span 
-                  ng-repeat="(icon,val) in monsterIcons[monster.name]"
-                  class="glyphicon" 
-                  ng-class="'glyphicon-' + icon"
-                  ng-show="val"></span>
-                <em>{{monster.size}}</em>
-            </h2>
-        </header>
-        <div class="panel-monster panel-body" 
-             ng-include="monster.collapsed ? '' : (monster.editing ? '/views/partials/monsterEdit.html' : '/views/partials/monsterDetails.html')" >
-        </div>
-    </article>
+  <article id="{{monster._id}}" class="panel panel-info" ng-repeat="monster in monsters | filter:{name:nameQuery} " ng-show="showMonster(monster)">
+      <header class="panel-heading" ng-click="monster.collapsed=!monster.collapsed">
+          <h2 class="panel-title">
+              {{monster.name}}
+              <span 
+                ng-repeat="(icon,val) in monsterIcons[monster.name]"
+                class="glyphicon" 
+                ng-class="'glyphicon-' + icon"
+                ng-show="val"></span>
+              <em>{{monster.size}}</em>
+          </h2>
+      </header>
+      <div class="panel-monster panel-body" 
+           ng-include="monster.collapsed ? '' : (monster.editing ? '/views/partials/monsterEdit.html' : '/views/partials/monsterDetails.html')" >
+      </div>
+  </article>
 </div>
 
 <div class="input-group" ng-show="apikey.length > 0">
